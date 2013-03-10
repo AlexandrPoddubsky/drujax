@@ -1,6 +1,5 @@
 <?php print drujax_start(); ?>
 <?php drujax_var("title", $head_title); ?>
-<?php if(!$ajax):// start if ajax  ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -26,11 +25,9 @@
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
   </div>
   <?php print $page_top; ?>
-<?php endif;// end if ajax ?>
     
   <?php print $page; ?>
     
-<?php if(!$ajax):// start if ajax ?>
   
   <?php print $page_bottom; ?>
   
@@ -38,5 +35,4 @@
   
 </body>
 </html>
-<?php endif;// end if ajax ?>
 <?php print drujax_end(); ?>

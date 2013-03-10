@@ -1,4 +1,3 @@
-<?php if(!$ajax):// start if ajax ?>
 <header id="header">
   <?php if ($logo): ?>
   <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
@@ -33,8 +32,8 @@
     </nav> <!-- /.section, /#navigation -->
   <?php endif; ?>
 </header>
-<section id="main">
-<?php endif;// end if ajax ?>
+
+<?php drujax_content_start("main-container"); ?>
   
   <?php if ($breadcrumb): ?>
     <div id="breadcrumb"><?php print $breadcrumb; ?></div>
@@ -53,24 +52,21 @@
   <?php print render($page['content']); ?>
   <?php print $feed_icons; ?>
   </section> <!-- /#content -->
-
   <?php if ($page['sidebar_first']): ?>
   <aside id="sidebar-first" class="column sidebar">
       <?php print render($page['sidebar_first']); ?>
   </aside> <!-- /#sidebar-first -->
   <?php endif; ?>
-
   <?php if ($page['sidebar_second']): ?>
   <aside id="sidebar-second" class="column sidebar">
       <?php print render($page['sidebar_second']); ?>
   </aside> <!-- /#sidebar-second -->
   <?php endif; ?>
   
-<?php if(!$ajax):// start if ajax ?>
-</section>
+<?php drujax_content_end(); ?>
+  
 <?php if ($page['footer']): ?>
   <footer id="footer">
       <?php print render($page['footer']); ?>
   </footer>
 <?php endif; ?>
-<?php endif; // end if ajax ?>

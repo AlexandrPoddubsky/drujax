@@ -9,7 +9,10 @@
       data = jQuery.parseJSON(data);
       document.title = data.title;
       console.log(data.title)
-      $('#main').html(data.main);
+      
+      for(var i in data.content){
+        $('#'+i).html(data.content[i]);
+      }
     };
     
     p.handler = function(data,path){
