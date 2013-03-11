@@ -57,3 +57,11 @@ function drujax_var($key,$value){
   global $drujax_vars;
   $drujax_vars[$key] = $value;
 }
+
+
+function drujax_render($tpl,$id){
+  $theme_path = drupal_get_path('theme', 'drujax');
+  echo "<section id='$id'>";
+  require_once $theme_path.'/templates/'.$tpl;
+  echo "</section>";
+}

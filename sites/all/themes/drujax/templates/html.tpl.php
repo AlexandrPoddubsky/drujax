@@ -1,4 +1,3 @@
-<?php print drujax_start(); ?>
 <?php drujax_var("title", $head_title); ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -35,4 +34,3 @@
   
 </body>
 </html>
-<?php print drujax_end(); ?>
