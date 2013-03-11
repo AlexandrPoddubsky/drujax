@@ -1,4 +1,40 @@
 (function($){
+  
+  $.fn.drujax = function(fn){
+      console.log("test");
+        var sel;
+        if (typeof fn === 'string') {
+            sel = fn;
+            fn = undefined;
+        }
+        if (!$(this).attr('address')) {
+            var f = function(e) {
+                if (e.shiftKey || e.ctrlKey || e.metaKey || e.which === 2) {
+                    return true;
+                }
+                if ($(this).is('a')) {
+                    
+                    var value = fn ? fn.call(this) : 
+                        /address:/.test($(this).attr('rel')) ? $(this).attr('rel').split('address:')[1].split(' ')[0] : 
+                        $.address.state() !== undefined && !/^\/?$/.test($.address.state()) ? 
+                                $(this).attr('href').replace(new RegExp('^(.*' + $.address.state() + '|\\.)'), '') : 
+                                $(this).attr('href').replace(/^(#\!?|\.)/, '');
+                        
+                    if(value.indexOf("/admin")!== 0 && value.indexOf("/user")!== 0) {
+                      e.preventDefault();
+                      $.address.value(value);
+                    }else{
+                      return true;
+                    }
+                    
+                }
+            };
+          
+            $(sel ? sel : this).live('click', f);
+        }
+        return this;
+  };
+
   var init = true, 
       state = window.history.pushState !== undefined;
   
@@ -28,7 +64,7 @@
   })();
   
   $.address.state('').init(function() {
-      $('a:not(.admin-link)').address();
+      $('a').drujax();
   }).change(function(event) {
   
       $('a:not(.admin-link)').each(function() {

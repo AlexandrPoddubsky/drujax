@@ -1,3 +1,5 @@
+<?php drujax_var("test","test"); ?>
+
 <?php if ($breadcrumb): ?>
   <div id="breadcrumb"><?php print $breadcrumb; ?></div>
 <?php endif; ?> 
