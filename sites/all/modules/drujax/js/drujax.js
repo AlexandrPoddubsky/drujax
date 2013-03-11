@@ -1,5 +1,4 @@
 (function($){
-  
   $.fn.drujax = function(fn){
       console.log("test");
         var sel;
@@ -20,7 +19,8 @@
                                 $(this).attr('href').replace(new RegExp('^(.*' + $.address.state() + '|\\.)'), '') : 
                                 $(this).attr('href').replace(/^(#\!?|\.)/, '');
                         
-                    if(value.indexOf("/admin")!== 0 && value.indexOf("/user")!== 0) {
+                    if(value.indexOf("/admin")!== 0 && value.indexOf("/user")!== 0 && value.indexOf("/add")< 0 && value.indexOf("/edit")< 0 && value.indexOf("/delete")< 0) {
+                      console.log(value);
                       e.preventDefault();
                       $.address.value(value);
                     }else{
@@ -44,7 +44,6 @@
     var _handler = function(data) {
       data = jQuery.parseJSON(data);
       document.title = data.title;
-      
       for(var i in data.content){
         $(i).html(data.content[i]);
       }

@@ -3,7 +3,7 @@
   "title" => $head_title,
   "drujax_vars" => $drujax_vars,
   "content" => array(
-    "#main" => $page
+    "#drujax-main" => $page
   ),
   "good" => "good"
 );

@@ -48,11 +48,11 @@ function drujax_preprocess_page(&$vars) {
 }
 
 function drujax_process_page(&$vars){
-  /*$vars["ajax"] = (isset($_GET['ajax']) && $_GET['ajax'] == true ); 
+  $vars["ajax"] = (isset($_GET['ajax']) && $_GET['ajax'] == true ); 
   $vars["content"] = "";
   if(!$vars["ajax"]){
-    $vars["content"] = drujax_render('page--drujax.tpl.php',$vars,"main");
-  }*/
+    $vars["content"] = "<section id='drujax-main'>".drujax_render('page--drujax.tpl.php',$vars)."</section>";
+  }
 }
 
 function drujax_render($template_file,$variables){
@@ -65,6 +65,7 @@ function drujax_render($template_file,$variables){
   
   $theme_file = "./$theme_path/templates/$template_file";
   $module_file = "./$module_path/$template_file";
+  
   if(is_file($theme_file)){
     include $theme_file;
   }else{
@@ -76,4 +77,3 @@ function drujax_render($template_file,$variables){
   ob_end_clean(); // End buffering and discard
   return $contents; // Return the contents
 }
-
