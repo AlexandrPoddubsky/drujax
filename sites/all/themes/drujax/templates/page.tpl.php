@@ -32,9 +32,11 @@
     </nav> <!-- /.section, /#navigation -->
   <?php endif; ?>
 </header>
+
 <div id="main">
   <?php print $content; ?>
 </div>
+
 <?php if ($page['footer']): ?>
   <footer id="footer">
       <?php print render($page['footer']); ?>
