@@ -2,7 +2,7 @@
   $json = array(
   "title" => $head_title,
   "content" => array(
-    "main" => $page
+    "#main" => $page
   )
 );
 ?>

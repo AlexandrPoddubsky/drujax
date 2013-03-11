@@ -11,7 +11,7 @@
       console.log(data.title)
       
       for(var i in data.content){
-        $('#'+i).html(data.content[i]);
+        $(i).html(data.content[i]);
       }
     };
     

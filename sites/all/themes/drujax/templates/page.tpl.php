@@ -32,11 +32,9 @@
     </nav> <!-- /.section, /#navigation -->
   <?php endif; ?>
 </header>
-   
-<section id="main">
-  <?php require_once $theme_path.'/templates/content.tpl.php'; ?>
-</section>
-  
+<div id="main">
+  <?php print $content; ?>
+</div>
 <?php if ($page['footer']): ?>
   <footer id="footer">
       <?php print render($page['footer']); ?>
