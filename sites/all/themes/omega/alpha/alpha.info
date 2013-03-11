@@ -41,6 +41,8 @@ css[alpha-alpha.css][name] = Alpha
 css[alpha-alpha.css][description] = Default styles & resets for Alpha/Omega base theme.
 css[alpha-alpha.css][options][weight] = -20
 
+scripts[] = js/main.js
+
 ; OPTIONAL LIBRARIES
 
 ; STYLESHEETS FOR EXCLUSION
