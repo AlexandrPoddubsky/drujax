@@ -50,4 +50,3 @@ this json response will look like this
             "#drujax-main":"your page--drujax.tpl.php output"
         }
     }
- No newline at end of file
