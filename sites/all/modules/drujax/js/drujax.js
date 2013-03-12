@@ -1,3 +1,29 @@
+
+  var Drujax = (function(){
+    var p = {};
+    
+    var _handler = function(data) {
+      data = jQuery.parseJSON(data);
+      document.title = data.title;
+      for(var i in data.content){
+        jQuery(i).html(data.content[i]);
+      }
+    };
+    
+    p.handler = function(data,path){
+      if(!path.match("^.*overlay.*")){
+        _handler(data,path);
+      }
+    };
+    
+    p.setHandler = function(func){
+      _handler = func;
+    };
+    
+    return p;
+  })();
+  
+  
 (function($){
   $.fn.drujax = function(fn){
       console.log("test");
