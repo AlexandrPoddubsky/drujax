@@ -1,4 +1,3 @@
-
   var Drujax = (function(){
     var p = {};
     
@@ -21,11 +20,8 @@
     
     return p;
   })();
-  
-  
 (function($){
   $.fn.drujax = function(fn){
-      console.log("test");
         var sel;
         if (typeof fn === 'string') {
             sel = fn;

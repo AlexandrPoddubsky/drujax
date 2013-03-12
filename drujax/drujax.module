@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @file
+ * Drujax module
+ *
+ * Drujax adds a seperate page--drujax.tpl.php file which is rendered on ajax requests without html.tpl.php and page.tpl.php. Everything stays the same on normal page requests.
+ */
+
 function drujax_theme() {
   return array(
     'html__drujax' => array(
@@ -7,22 +14,21 @@ function drujax_theme() {
       'template' => 'html--drujax',
     ),
     'page__drujax' => array(
-      'variables' => array('content'=>NULL, 'messages' => NULL),
+      'variables' => array('content' => NULL, 'messages' => NULL),
       'template' => 'page--drujax'
     )
   );
 }
 
 function drujax_preprocess_html(&$vars) {
-  $vars["ajax"] = (isset($_GET['ajax']) && $_GET['ajax'] == true ); 
+  $vars["ajax"] = (isset($_GET['ajax']) && $_GET['ajax'] == TRUE ); 
   $vars["drujax_vars"] = drujax_var();
-  if($vars["ajax"]){
+  if ($vars["ajax"]) {
     $vars["theme_hook_suggestions"]= array("html__drujax");
   }
   $theme_path = drupal_get_path('theme', 'drujax');
   $vars["theme_path"] = $theme_path;
 }
-
 
 function drujax_var($var_name= NULL, $new_val = NULL) {
   $vars = &drupal_static(__FUNCTION__, array());
@@ -37,9 +43,9 @@ function drujax_var($var_name= NULL, $new_val = NULL) {
 
 function drujax_preprocess_page(&$vars) {
   
-  $vars["ajax"] = (isset($_GET['ajax']) && $_GET['ajax'] == true );
-  if($vars["ajax"]){
-    drupal_add_http_header('Content-type','application/json');
+  $vars["ajax"] = (isset($_GET['ajax']) && $_GET['ajax'] == TRUE );
+  if ($vars["ajax"]) {
+    drupal_add_http_header('Content-type', 'application/json');
     $vars["theme_hook_suggestions"][] = "page__drujax";
   }
   $theme_path = drupal_get_path('theme', 'drujax');
@@ -47,17 +53,14 @@ function drujax_preprocess_page(&$vars) {
   
   drupal_add_js(drupal_get_path('module', 'drujax') . '/js/vendor/jquery.address-1.5.min.js');
   drupal_add_js(drupal_get_path('module', 'drujax') . '/js/drujax.js');
-}
-
-function drujax_process_page(&$vars){
-  $vars["ajax"] = (isset($_GET['ajax']) && $_GET['ajax'] == true ); 
+  
   $vars["content"] = "";
-  if(!$vars["ajax"]){
-    $vars["content"] = "<section id='drujax-main'>".drujax_render('page--drujax.tpl.php',$vars)."</section>";
+  if (!$vars["ajax"]) {
+    $vars["content"] = "<section id='drujax-main'>" . drujax_render('page--drujax.tpl.php', $vars) . "</section>";
   }
 }
 
-function drujax_render($template_file,$variables){
+function drujax_render($template_file, $variables) {
   extract($variables, EXTR_SKIP); // Extract the variables to a local namespace
   ob_start(); // Start output buffering
   
@@ -68,9 +71,10 @@ function drujax_render($template_file,$variables){
   $theme_file = "./$theme_path/templates/$template_file";
   $module_file = "./$module_path/$template_file";
   
-  if(is_file($theme_file)){
+  if (is_file($theme_file)) {
     include $theme_file;
-  }else{
+  }
+  else{
     include $module_file;
   }
   
