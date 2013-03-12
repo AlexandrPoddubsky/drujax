@@ -1,4 +1,4 @@
-drujax
+Drujax
 ======
 Drupal ajax module.
 
