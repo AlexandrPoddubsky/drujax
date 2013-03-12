@@ -41,7 +41,7 @@
   var Drujax = (function(){
     var p = {};
     
-    var _handler = function(data) {
+    var _handler = function(data,path) {
       data = jQuery.parseJSON(data);
       document.title = data.title;
       for(var i in data.content){
