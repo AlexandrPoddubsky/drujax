@@ -1,20 +1,52 @@
 drujax
 ======
-
 Drupal ajax module.
 
-Drujax adds a seperate page--drujax.tpl.php file which is rendered on ajax requests without html.tpl.php and page.tpl.php
-and loads the full page on normal requests. 
+Drujax adds a seperate page--drujax.tpl.php file which is rendered on ajax requests without html.tpl.php and page.tpl.php. Everything stays the same on normal page requests.
 
-Drujax also makes use of jquery address push states. Every content link will be automaticly rendered with ajax.
-You can also hook into ajax handler to create your own animations and set the ajax data when you want.
-For Example:
+Drujax also makes use of jquery address push states. Every content link will automaticly load your page content through ajax. 
 
+Documentation
+=============
 
-Drujax.setHandler(function(data){
-      data = jQuery.parseJSON(data);
-      document.title = data.title;
-      for(var i in data.content){
-        $(i).html(data.content[i]);
-      }
-});
+js
+--
+
+### Custom ajax complete Handler
+
+    <script>
+        Drujax.setHandler(yourHandler);// calls yourHandler(json,path)
+    </script>
+
+Example:
+
+    <script>
+        Drujax.setHandler(function(data,path){
+            $("#drujax-main").animate({marginLeft:-$(window).width()},500,function(){
+                for(var i in data.content){
+                 $(i).html(data.content[i]);
+                }
+                $(this).animate({marginLeft:0},500);
+            });
+        })
+    </script>
+
+php
+---
+
+###Add variables to the json reponse
+    
+    <?php 
+        // in your page--drujax.tpl.php
+        drujax_var("key","value"); 
+        ...
+        
+this json response will look like this
+    
+    {
+        "title":"page title",
+        "key":"value",
+        "content":{
+            "#drujax-main":"your page--drujax.tpl.php output"
+        }
+    }

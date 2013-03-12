@@ -2,15 +2,15 @@
   var Drujax = (function(){
     var p = {};
     
-    var _handler = function(data) {
-      data = jQuery.parseJSON(data);
-      document.title = data.title;
+    var _handler = function(data,path) {
       for(var i in data.content){
         jQuery(i).html(data.content[i]);
       }
     };
     
     p.handler = function(data,path){
+      data = jQuery.parseJSON(data);
+      document.title = data.title;
       if(!path.match("^.*overlay.*")){
         _handler(data,path);
       }
@@ -46,7 +46,6 @@
                                 $(this).attr('href').replace(/^(#\!?|\.)/, '');
                         
                     if(value.indexOf("/admin")!== 0 && value.indexOf("/user")!== 0 && value.indexOf("/add")< 0 && value.indexOf("/edit")< 0 && value.indexOf("/delete")< 0) {
-                      console.log(value);
                       e.preventDefault();
                       $.address.value(value);
                     }else{
@@ -63,30 +62,6 @@
 
   var init = true, 
       state = window.history.pushState !== undefined;
-  
-  var Drujax = (function(){
-    var p = {};
-    
-    var _handler = function(data,path) {
-      data = jQuery.parseJSON(data);
-      document.title = data.title;
-      for(var i in data.content){
-        $(i).html(data.content[i]);
-      }
-    };
-    
-    p.handler = function(data,path){
-      if(!path.match("^.*overlay.*")){
-        _handler(data,path);
-      }
-    };
-    
-    p.setHandler = function(func){
-      _handler = func;
-    };
-    
-    return p;
-  })();
   
   $.address.state('').init(function() {
       $('a').drujax();
