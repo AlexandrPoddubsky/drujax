@@ -36,8 +36,10 @@ function drujax_var($var_name= NULL, $new_val = NULL) {
 }
 
 function drujax_preprocess_page(&$vars) {
+  
   $vars["ajax"] = (isset($_GET['ajax']) && $_GET['ajax'] == true );
   if($vars["ajax"]){
+    drupal_add_http_header('Content-type','application/json');
     $vars["theme_hook_suggestions"][] = "page__drujax";
   }
   $theme_path = drupal_get_path('theme', 'drujax');

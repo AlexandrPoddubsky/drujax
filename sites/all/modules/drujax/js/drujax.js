@@ -9,7 +9,6 @@
     };
     
     p.handler = function(data,path){
-      data = jQuery.parseJSON(data);
       document.title = data.title;
       if(!path.match("^.*overlay.*")){
         _handler(data,path);
